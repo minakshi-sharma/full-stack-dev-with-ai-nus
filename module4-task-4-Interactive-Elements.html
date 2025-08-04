@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="A responsive webpage layout using Flexbox with header, main content, and footer sections.">
+  <title>Flexbox Layout Example</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: cursive;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-size: 15px;
+      background-color: #fffdf7;
+    }
+
+    a {
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    header, footer {
+      background-color: #ef7c00;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    nav{
+      border-top: 1px solid #ffffff;
+      margin-top: 15px;
+      padding-top: 15px;
+    }
+    
+    header nav a {    
+      position: relative;
+      display: inline-block;
+      margin: 5px 5px;
+      text-decoration: none;
+      color: #000000;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 5px;
+      padding: 5px 5px;
+      overflow: hidden;
+      z-index: 1;
+      transition: color 0.3s ease-in-out;
+    }
+
+    /* Sliding background using ::before */
+    header nav a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background-color: #ffffff;
+      z-index: -1;
+      transition: width 0.4s ease-in-out;
+    }
+
+    /* Hover/focus effect with color wipe */
+    header nav a:hover::before,
+    header nav a:focus::before {
+      width: 100%;
+    }
+
+    header nav a:hover,
+    header nav a:focus {
+      color: #ef7c00;
+      outline: none;
+    }
+
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 15px;
+      background-color: #7cefb5;
+    }
+
+    .content, .sidebar {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .content:hover,
+    .sidebar:hover {
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .content h2, .sidebar h2 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .sidebar nav a {
+      display: block;
+      background-color: #ef7c00;
+      padding: 10px;
+      color: #ffffff;
+      margin-top: 15px;
+      font-size: 1rem;
+      border-radius: 4px;
+      text-align: center;
+      transition: all 0.2s ease-in-out;
+      text-decoration: none;
+    }
+
+    .sidebar nav a:hover,
+    .sidebar nav a:focus {
+      background-color: #ffffff;
+      outline: 2px dashed #d56700;
+      color: #d56700;
+      padding: 15px;
+      transform: scale(1.05);
+    }
+
+    .sidebar nav a:active {
+      background-color: #ffffff !important;
+      color: #d56700 !important;
+      transform: scale(0.96) !important;
+      outline: none;
+    }
+
+    ol {
+      list-style-position: inside;
+      padding: 20px;
+      background-color: #efefef;
+      margin-top: 15px;
+      border-radius: 5px;
+    }
+
+    footer {
+      padding: 15px;
+      font-size: 0.9rem;
+    }
+
+    /* Tablet View */
+    @media (min-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+
+      header, footer{
+        padding: 20px 30px;
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      main {
+        flex-direction: row;
+        padding: 20px;
+      }
+
+      nav a {
+        font-size: 1.7rem;
+      }
+
+      .sidebar {
+        flex: 0.35;
+      }
+
+      .content {
+        flex: 1;
+      }
+    }
+
+    /* Desktop View */
+    @media (min-width: 1024px) {
+      body {
+        font-size: 18px;
+        background: aliceblue;
+      }
+
+      main {
+        max-width: 1300px;
+        margin: auto;
+        gap: 30px;
+        padding: 30px;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .content h2, .sidebar h2 {
+        font-size: 1.5rem;
+      }
+
+      .sidebar nav a {
+        font-size: 1.5rem;
+      }
+
+      footer {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Module 4: Week 4: Required Assignment - Interactive Elements </h1>
+        <h3>Task 4</h3>
+    <nav>
+      <a href="" tabindex="1">Home</a>
+      <a href="#content" tabindex="2">Content</a>
+      <a href="#sidebar" tabindex="3">Sidebar</a>
+      <a href="#footer" tabindex="4">Footer</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="content" id="content">
+      <h2>Main Area</h2>
+      <p>This page is completing the following tasks:</p>
+      <ol>
+        <li>Implement mobile-first design by writing base styles for mobile devices. </li>
+        <li>Use media queries to adjust the layout for larger screens (e.g., tablet and desktop). </li>
+        <li>Make sure the page remains visually appealing and functional on different screen sizes (e.g., mobile, tablet, and desktop). </li>
+        <li>Adjust font sizes, layout, and spacing for readability on smaller devices.</li>
+      </ol>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+      <h2>Sidebar Navigation</h2>
+      <nav>
+        <a href="#content" tabindex="4">Content</a>
+        <a href="#sidebar" tabindex="5">Sidebar</a>
+        <a href="#footer" tabindex="6">Footer</a>
+      </nav>
+    </div>
+  </main>
+
+  <footer id="footer">
+    <p>All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
